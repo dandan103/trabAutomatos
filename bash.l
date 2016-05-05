@@ -17,6 +17,6 @@
 "cd"		{return T_CD;}
 "exit"		{return T_QUIT;}
 "quit"		{return T_QUIT;}
-[a-zA-Z]+	 	{yylval.a = yytext; return T_PARAM;}
+[a-zA-Z]+ 	{yylval.a = yytext; return T_PARAM;}
 
 %%
