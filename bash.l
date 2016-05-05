@@ -12,6 +12,7 @@
 
 [ \t]		; // ignore all whitespace
 "ls"		{return T_LIST;}
+"cd"		{return T_CD;}
 [a-z]+	 	{yylval.a = yytext; return T_PARAM;}
 \n		{return T_NEWLINE;}
 "exit"		{return T_QUIT;}
