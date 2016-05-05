@@ -20,6 +20,3 @@
 [a-zA-Z]+	 	{yylval.a = yytext; return T_PARAM;}
 
 %%
-
-
-
