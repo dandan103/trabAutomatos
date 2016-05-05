@@ -16,7 +16,7 @@ void yyerror(const char* s);
 
 %token T_PARAM
 %token T_NEWLINE T_QUIT
-%left T_LIST T_CD
+%token T_LIST T_CD T_PS
 
 %start bashing
 
@@ -28,7 +28,7 @@ bashing:
 
 line: T_NEWLINE
     | T_LIST T_NEWLINE { system("ls"); } 
-    | T_CD T_PARAM T_NEWLINE { char* buffer = (char *) calloc(1, sizeof(char)); snprintf(buffer, sizeof(buffer), "cd %s", &yylval.a); system(buffer); } 
+    | T_CD T_PARAM T_NEWLINE { char buffer[60]; sprintf(buffer, "cd %s", yylval.a); system(buffer); } 
     | T_QUIT T_NEWLINE { printf("bye!\n"); exit(0); }
 ;
 

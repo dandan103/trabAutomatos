@@ -113,7 +113,8 @@ extern int yydebug;
     T_NEWLINE = 259,
     T_QUIT = 260,
     T_LIST = 261,
-    T_CD = 262
+    T_CD = 262,
+    T_PS = 263
   };
 #endif
 
@@ -126,7 +127,7 @@ union YYSTYPE
 
 	char *a;
 
-#line 130 "bash.tab.c" /* yacc.c:355  */
+#line 131 "bash.tab.c" /* yacc.c:355  */
 };
 
 typedef union YYSTYPE YYSTYPE;
@@ -143,7 +144,7 @@ int yyparse (void);
 
 /* Copy the second part of user declarations.  */
 
-#line 147 "bash.tab.c" /* yacc.c:358  */
+#line 148 "bash.tab.c" /* yacc.c:358  */
 
 #ifdef short
 # undef short
@@ -388,7 +389,7 @@ union yyalloc
 #define YYLAST   8
 
 /* YYNTOKENS -- Number of terminals.  */
-#define YYNTOKENS  8
+#define YYNTOKENS  9
 /* YYNNTS -- Number of nonterminals.  */
 #define YYNNTS  3
 /* YYNRULES -- Number of rules.  */
@@ -399,7 +400,7 @@ union yyalloc
 /* YYTRANSLATE[YYX] -- Symbol number corresponding to YYX as returned
    by yylex, with out-of-bounds checking.  */
 #define YYUNDEFTOK  2
-#define YYMAXUTOK   262
+#define YYMAXUTOK   263
 
 #define YYTRANSLATE(YYX)                                                \
   ((unsigned int) (YYX) <= YYMAXUTOK ? yytranslate[YYX] : YYUNDEFTOK)
@@ -434,7 +435,7 @@ static const yytype_uint8 yytranslate[] =
        2,     2,     2,     2,     2,     2,     2,     2,     2,     2,
        2,     2,     2,     2,     2,     2,     2,     2,     2,     2,
        2,     2,     2,     2,     2,     2,     1,     2,     3,     4,
-       5,     6,     7
+       5,     6,     7,     8
 };
 
 #if YYDEBUG
@@ -451,7 +452,7 @@ static const yytype_uint8 yyrline[] =
 static const char *const yytname[] =
 {
   "$end", "error", "$undefined", "T_PARAM", "T_NEWLINE", "T_QUIT",
-  "T_LIST", "T_CD", "$accept", "bashing", "line", YY_NULLPTR
+  "T_LIST", "T_CD", "T_PS", "$accept", "bashing", "line", YY_NULLPTR
 };
 #endif
 
@@ -460,7 +461,7 @@ static const char *const yytname[] =
    (internal) symbol number NUM (which must be that of a token).  */
 static const yytype_uint16 yytoknum[] =
 {
-       0,   256,   257,   258,   259,   260,   261,   262
+       0,   256,   257,   258,   259,   260,   261,   262,   263
 };
 # endif
 
@@ -520,14 +521,14 @@ static const yytype_uint8 yycheck[] =
      symbol of state STATE-NUM.  */
 static const yytype_uint8 yystos[] =
 {
-       0,     9,     0,     4,     5,     6,     7,    10,     4,     4,
+       0,    10,     0,     4,     5,     6,     7,    11,     4,     4,
        3,     4
 };
 
   /* YYR1[YYN] -- Symbol number of symbol that rule YYN derives.  */
 static const yytype_uint8 yyr1[] =
 {
-       0,     8,     9,     9,    10,    10,    10,    10
+       0,     9,    10,    10,    11,    11,    11,    11
 };
 
   /* YYR2[YYN] -- Number of symbols on the right hand side of rule YYN.  */
@@ -1212,23 +1213,23 @@ yyreduce:
         case 5:
 #line 30 "bash.y" /* yacc.c:1646  */
     { system("ls"); }
-#line 1216 "bash.tab.c" /* yacc.c:1646  */
+#line 1217 "bash.tab.c" /* yacc.c:1646  */
     break;
 
   case 6:
 #line 31 "bash.y" /* yacc.c:1646  */
-    { char* buffer = (char *) calloc(1, sizeof(char)); snprintf(buffer, sizeof(buffer), "cd %s", &yylval.a); system(buffer); }
-#line 1222 "bash.tab.c" /* yacc.c:1646  */
+    { char buffer[60]; sprintf(buffer, "cd %s", yylval.a); system(buffer); }
+#line 1223 "bash.tab.c" /* yacc.c:1646  */
     break;
 
   case 7:
 #line 32 "bash.y" /* yacc.c:1646  */
     { printf("bye!\n"); exit(0); }
-#line 1228 "bash.tab.c" /* yacc.c:1646  */
+#line 1229 "bash.tab.c" /* yacc.c:1646  */
     break;
 
 
-#line 1232 "bash.tab.c" /* yacc.c:1646  */
+#line 1233 "bash.tab.c" /* yacc.c:1646  */
       default: break;
     }
   /* User semantic actions sometimes alter yychar, and that requires

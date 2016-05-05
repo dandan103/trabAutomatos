@@ -49,7 +49,8 @@ extern int yydebug;
     T_NEWLINE = 259,
     T_QUIT = 260,
     T_LIST = 261,
-    T_CD = 262
+    T_CD = 262,
+    T_PS = 263
   };
 #endif
 
@@ -62,7 +63,7 @@ union YYSTYPE
 
 	char *a;
 
-#line 66 "bash.tab.h" /* yacc.c:1909  */
+#line 67 "bash.tab.h" /* yacc.c:1909  */
 };
 
 typedef union YYSTYPE YYSTYPE;

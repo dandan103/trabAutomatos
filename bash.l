@@ -11,12 +11,13 @@
 %%
 
 [ \t]		; // ignore all whitespace
-"ls"		{return T_LIST;}
-"cd"		{return T_CD;}
-[a-z]+	 	{yylval.a = yytext; return T_PARAM;}
 \n		{return T_NEWLINE;}
+"ls"		{return T_LIST;}
+"ps"		{return T_PS;}
+"cd"		{return T_CD;}
 "exit"		{return T_QUIT;}
 "quit"		{return T_QUIT;}
+[a-zA-Z]+	 	{yylval.a = yytext; return T_PARAM;}
 
 %%
 
