@@ -11,12 +11,14 @@
 %%
 
 [ \t]		; // ignore all whitespace
-\n		{return T_NEWLINE;}
+\n		    {return T_NEWLINE;}
 "ls"		{return T_LIST;}
 "ps"		{return T_PS;}
 "cd"		{return T_CD;}
 "exit"		{return T_QUIT;}
 "quit"		{return T_QUIT;}
+[+*-/]  	{return *yytext;}
+[0-9]+  	{yylval.num = atoi(yytext); return T_NUM;}
 [a-zA-Z]+ 	{yylval.a = yytext; return T_PARAM;}
 
 %%

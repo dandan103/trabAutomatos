@@ -46,11 +46,13 @@ extern int yydebug;
   enum yytokentype
   {
     T_PARAM = 258,
-    T_NEWLINE = 259,
-    T_QUIT = 260,
-    T_LIST = 261,
-    T_CD = 262,
-    T_PS = 263
+    T_SINAL = 259,
+    T_NEWLINE = 260,
+    T_QUIT = 261,
+    T_LIST = 262,
+    T_CD = 263,
+    T_PS = 264,
+    T_NUM = 265
   };
 #endif
 
@@ -62,8 +64,9 @@ union YYSTYPE
 #line 13 "bash.y" /* yacc.c:1909  */
 
 	char *a;
+    int num;
 
-#line 67 "bash.tab.h" /* yacc.c:1909  */
+#line 70 "bash.tab.h" /* yacc.c:1909  */
 };
 
 typedef union YYSTYPE YYSTYPE;
