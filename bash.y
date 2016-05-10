@@ -33,7 +33,14 @@ bashing:
 line: T_NEWLINE
     | T_LIST T_NEWLINE { system("ls"); } 
     | T_PS T_NEWLINE { system("ps"); }
-    | T_CD T_PARAM T_NEWLINE { char buffer[60]; sprintf(buffer, "cd %s", yylval.a); system(buffer); } 
+    | T_CD T_PARAM T_NEWLINE {
+         char cwd[60];
+         getcwd(cwd, sizeof(cwd));
+         char buffer[60];
+         sprintf(buffer, "%s/%s", cwd, yylval.a);
+         printf("%s", buffer);
+         chdir(buffer);
+    } 
     | T_KILL T_NUM T_NEWLINE { char buffer[60]; sprintf(buffer, "kill %d", yylval.num); system(buffer); }
     | T_TOUCH T_PARAM T_NEWLINE { char buffer[60]; sprintf(buffer, "touch %s", yylval.a); system(buffer); printf("Arquivo %s criado", yylval.a); }
     | T_START T_PARAM T_NEWLINE { char buffer[60]; sprintf(buffer, "exec ./%s", yylval.a); system(buffer); }
