@@ -21,8 +21,8 @@
 "start"                     {return T_START;}
 "mkdir"                     {return T_MKDIR;}
 "rmdir"                     {return T_RMDIR;}
+([a-zA-Z]":")*"/"*[a-zA-Z]+[0-9]*(\.+[a-z]+)* {yylval.a = yytext; return T_PARAM;}
 [+*-/]  	                {return *yytext;}
 [0-9]+  	                {yylval.num = atoi(yytext); return T_NUM;}
-[a-zA-Z]+[0-9]*(\.+[a-z]+)* {yylval.a = yytext; return T_PARAM;}
 
 %%
