@@ -1,5 +1,6 @@
 %{
 
+#include <unistd.h>
 #include <stdio.h>
 #include <stdlib.h>
 
@@ -26,7 +27,7 @@ void yyerror(const char* s);
 %%
 
 bashing: 
-	   | bashing line { printf(">> "); }
+	   | bashing line { char cwd[60]; getcwd(cwd, sizeof(cwd)); printf("Bashinho:%s >> ", cwd); }
 ;
 
 line: T_NEWLINE
@@ -54,7 +55,9 @@ expression: T_NUM { $$ = $1; }
 
 int main() {
 	yyin = stdin;
-    printf(">> ");
+    char cwd[60];
+    getcwd(cwd, sizeof(cwd));
+    printf("Bashinho:%s >> ", cwd);
 	do { 
 		yyparse();
 	} while(!feof(yyin));
