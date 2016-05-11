@@ -453,9 +453,9 @@ static const yytype_uint8 yytranslate[] =
   /* YYRLINE[YYN] -- Source line where rule number YYN was defined.  */
 static const yytype_uint8 yyrline[] =
 {
-       0,    29,    29,    30,    33,    34,    35,    36,    44,    45,
-      46,    47,    48,    49,    50,    51,    54,    55,    56,    57,
-      58
+       0,    29,    29,    30,    33,    34,    35,    36,    37,    38,
+      39,    40,    41,    42,    43,    44,    47,    48,    49,    50,
+      51
 };
 #endif
 
@@ -1268,97 +1268,90 @@ yyreduce:
 
   case 7:
 #line 36 "bash.y" /* yacc.c:1646  */
-    {
-         char cwd[60];
-         getcwd(cwd, sizeof(cwd));
-         char buffer[60];
-         sprintf(buffer, "%s/%s", cwd, yylval.a);
-         printf("%s", buffer);
-         chdir(buffer);
-    }
-#line 1280 "bash.tab.c" /* yacc.c:1646  */
+    { cd(); }
+#line 1273 "bash.tab.c" /* yacc.c:1646  */
     break;
 
   case 8:
-#line 44 "bash.y" /* yacc.c:1646  */
+#line 37 "bash.y" /* yacc.c:1646  */
     { char buffer[60]; sprintf(buffer, "kill %d", yylval.num); system(buffer); }
-#line 1286 "bash.tab.c" /* yacc.c:1646  */
+#line 1279 "bash.tab.c" /* yacc.c:1646  */
     break;
 
   case 9:
-#line 45 "bash.y" /* yacc.c:1646  */
+#line 38 "bash.y" /* yacc.c:1646  */
     { char buffer[60]; sprintf(buffer, "touch %s", yylval.a); system(buffer); printf("Arquivo %s criado", yylval.a); }
-#line 1292 "bash.tab.c" /* yacc.c:1646  */
+#line 1285 "bash.tab.c" /* yacc.c:1646  */
     break;
 
   case 10:
-#line 46 "bash.y" /* yacc.c:1646  */
+#line 39 "bash.y" /* yacc.c:1646  */
     { char buffer[60]; sprintf(buffer, "exec ./%s", yylval.a); system(buffer); }
-#line 1298 "bash.tab.c" /* yacc.c:1646  */
+#line 1291 "bash.tab.c" /* yacc.c:1646  */
     break;
 
   case 11:
-#line 47 "bash.y" /* yacc.c:1646  */
+#line 40 "bash.y" /* yacc.c:1646  */
     { char buffer[60]; sprintf(buffer, "mkdir %s", yylval.a); system(buffer); }
-#line 1304 "bash.tab.c" /* yacc.c:1646  */
+#line 1297 "bash.tab.c" /* yacc.c:1646  */
     break;
 
   case 12:
-#line 48 "bash.y" /* yacc.c:1646  */
+#line 41 "bash.y" /* yacc.c:1646  */
     { char buffer[60]; sprintf(buffer, "rmdir %s", yylval.a); system(buffer); }
-#line 1310 "bash.tab.c" /* yacc.c:1646  */
+#line 1303 "bash.tab.c" /* yacc.c:1646  */
     break;
 
   case 13:
-#line 49 "bash.y" /* yacc.c:1646  */
+#line 42 "bash.y" /* yacc.c:1646  */
     { system("/sbin/ifconfig"); }
-#line 1316 "bash.tab.c" /* yacc.c:1646  */
+#line 1309 "bash.tab.c" /* yacc.c:1646  */
     break;
 
   case 14:
-#line 50 "bash.y" /* yacc.c:1646  */
+#line 43 "bash.y" /* yacc.c:1646  */
     { printf("bye!\n"); exit(0); }
-#line 1322 "bash.tab.c" /* yacc.c:1646  */
+#line 1315 "bash.tab.c" /* yacc.c:1646  */
     break;
 
   case 15:
-#line 51 "bash.y" /* yacc.c:1646  */
+#line 44 "bash.y" /* yacc.c:1646  */
     { printf("%d\n", (yyvsp[-1].num)); }
-#line 1328 "bash.tab.c" /* yacc.c:1646  */
+#line 1321 "bash.tab.c" /* yacc.c:1646  */
     break;
 
   case 16:
-#line 54 "bash.y" /* yacc.c:1646  */
+#line 47 "bash.y" /* yacc.c:1646  */
     { (yyval.num) = (yyvsp[0].num); }
-#line 1334 "bash.tab.c" /* yacc.c:1646  */
+#line 1327 "bash.tab.c" /* yacc.c:1646  */
     break;
 
   case 17:
-#line 55 "bash.y" /* yacc.c:1646  */
+#line 48 "bash.y" /* yacc.c:1646  */
     { (yyval.num) = (yyvsp[-2].num) + (yyvsp[0].num); }
-#line 1340 "bash.tab.c" /* yacc.c:1646  */
+#line 1333 "bash.tab.c" /* yacc.c:1646  */
     break;
 
   case 18:
-#line 56 "bash.y" /* yacc.c:1646  */
+#line 49 "bash.y" /* yacc.c:1646  */
     { (yyval.num) = (yyvsp[-2].num) - (yyvsp[0].num); }
-#line 1346 "bash.tab.c" /* yacc.c:1646  */
+#line 1339 "bash.tab.c" /* yacc.c:1646  */
     break;
 
   case 19:
-#line 57 "bash.y" /* yacc.c:1646  */
+#line 50 "bash.y" /* yacc.c:1646  */
     { (yyval.num) = (yyvsp[-2].num) * (yyvsp[0].num); }
-#line 1352 "bash.tab.c" /* yacc.c:1646  */
+#line 1345 "bash.tab.c" /* yacc.c:1646  */
     break;
 
   case 20:
-#line 58 "bash.y" /* yacc.c:1646  */
+#line 51 "bash.y" /* yacc.c:1646  */
     { (yyval.num) = (yyvsp[-2].num) / (yyvsp[0].num); }
-#line 1358 "bash.tab.c" /* yacc.c:1646  */
+#line 1351 "bash.tab.c" /* yacc.c:1646  */
     break;
 
 
-#line 1362 "bash.tab.c" /* yacc.c:1646  */
+#line 1355 "bash.tab.c" /* yacc.c:1646  */
       default: break;
     }
   /* User semantic actions sometimes alter yychar, and that requires
@@ -1586,8 +1579,37 @@ yyreturn:
 #endif
   return yyresult;
 }
-#line 61 "bash.y" /* yacc.c:1906  */
+#line 54 "bash.y" /* yacc.c:1906  */
 
+
+char *trimwhitespace(char *str) {
+  char *end;
+
+  // Trim leading space
+  while(isspace(*str)) str++;
+
+  if(*str == 0)  // All spaces?
+    return str;
+
+  // Trim trailing space
+  end = str + strlen(str) - 1;
+  while(end > str && isspace(*end)) end--;
+
+  // Write new null terminator
+  *(end+1) = 0;
+
+  return str;
+}
+
+void cd(){
+     char cwd[60];
+     getcwd(cwd, sizeof(cwd));
+     char buffer[60];
+     sprintf(buffer, "%s/%s", cwd, yylval.a);
+     printf("%s", buffer);
+     //char tst[60] = ;
+     chdir(trimwhitespace(buffer));
+}
 
 int main() {
 	yyin = stdin;

@@ -33,14 +33,7 @@ bashing:
 line: T_NEWLINE
     | T_LIST T_NEWLINE { system("ls"); } 
     | T_PS T_NEWLINE { system("ps"); }
-    | T_CD T_PARAM T_NEWLINE {
-         char cwd[60];
-         getcwd(cwd, sizeof(cwd));
-         char buffer[60];
-         sprintf(buffer, "%s/%s", cwd, yylval.a);
-         printf("%s", buffer);
-         chdir(buffer);
-    } 
+    | T_CD T_PARAM T_NEWLINE { cd(); } 
     | T_KILL T_NUM T_NEWLINE { char buffer[60]; sprintf(buffer, "kill %d", yylval.num); system(buffer); }
     | T_TOUCH T_PARAM T_NEWLINE { char buffer[60]; sprintf(buffer, "touch %s", yylval.a); system(buffer); printf("Arquivo %s criado", yylval.a); }
     | T_START T_PARAM T_NEWLINE { char buffer[60]; sprintf(buffer, "exec ./%s", yylval.a); system(buffer); }
@@ -59,6 +52,35 @@ expression: T_NUM { $$ = $1; }
 ;
 
 %%
+
+char *trimwhitespace(char *str) {
+  char *end;
+
+  // Trim leading space
+  while(isspace(*str)) str++;
+
+  if(*str == 0)  // All spaces?
+    return str;
+
+  // Trim trailing space
+  end = str + strlen(str) - 1;
+  while(end > str && isspace(*end)) end--;
+
+  // Write new null terminator
+  *(end+1) = 0;
+
+  return str;
+}
+
+void cd(){
+     char cwd[60];
+     getcwd(cwd, sizeof(cwd));
+     char buffer[60];
+     sprintf(buffer, "%s/%s", cwd, yylval.a);
+     printf("%s", buffer);
+     //char tst[60] = ;
+     chdir(trimwhitespace(buffer));
+}
 
 int main() {
 	yyin = stdin;
